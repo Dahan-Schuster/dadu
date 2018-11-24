@@ -1,0 +1,92 @@
+create database dadu;
+
+use dadu;
+
+create table usuarios(
+    codigo integer not null PRIMARY KEY AUTO_INCREMENT,
+    usuario varchar(20) not null,
+	senha varchar(12) not null,
+	nome varchar(20) not null,
+	sobrenome varchar(20),
+	apelido varchar(8),
+	email1 varchar(255),
+	email2 varchar(255),
+	tel1 varchar(11),
+	tel2 varchar(11),
+	endereco varchar(100),
+	profissao varchar(20),
+empresa varchar(20)
+    );
+
+create table contatos(
+    cod_contato integer not null PRIMARY KEY AUTO_INCREMENT,
+    nome varchar(20) not null,
+	sobrenome varchar(20) not null,
+	apelido varchar(20) not null,
+	grupo enum(‘F’, ‘P’, ‘A’, ‘T’),
+	email1 varchar(200),
+	email2 varchar(200),
+	tel1 varchar(14),
+	tel2 varchar(14),
+    
+    cod_usuario integer,
+    CONSTRAINT fk_ContUsuario FOREIGN KEY (cod_usuario) REFERENCES usuarios (codigo)
+    
+    );
+
+create table spaceGamePontuacoes(
+	cod_usuario integer not null primary key,
+    	pontuacao integer not null
+);
+
+create table notas(
+	cod_nota integer not null PRIMARY KEY auto_increment,
+    data date not null,
+    hora char(5) not null,
+    texto tinytext not null,
+cor enum ('A', 'B', 'C', 'D', 'E', 'F'),
+    cod_usuario integer,
+    constraint fk_notuser foreign key (cod_usuario) references usuarios (codigo));
+
+create table configuracoesDataHora(
+	cod_usuario integer not null primary key,
+    
+    -- A: dd/mm/yyyy
+    -- B: mm/dd/yyyy
+    -- C: yyyy/mm/dd
+	formatoData enum ('A', 'B', 'C') not null default 'A',
+    
+    -- A: 24 h
+    -- B: 12 h
+    formatoHora enum ('A', 'B') not null default 'A'
+    
+);
+   
+create table configuracoesTemas(
+	cod_usuario integer not null primary key,
+    
+    tema varchar(6) not null default 'claro',
+    
+    wallpaper enum ('A', 'B', 'C', 'D', 'E') not null default 'A',
+    
+    CONSTRAINT fk_temaUsuario FOREIGN KEY (cod_usuario) REFERENCES usuarios (codigo)
+    );
+
+create table alarmes(
+	cod_alarme integer not null PRIMARY KEY auto_increment,
+    som enum('A', 'B', 'C') not null,
+    hora char(5) not null,
+    status enum('A', 'B', 'C') not null,
+    dias char(7) not null,
+    cod_usuario integer not null,
+    constraint fk_alarmeUser foreign key (cod_usuario) references usuarios (codigo));
+
+create table eventos( 
+cod_evento integer not null PRIMARY KEY AUTO_INCREMENT,
+ titulo varchar(40) not null, 
+data DATE not null, 
+horaInicio varchar(5) not null,
+ horaFim varchar(5), 
+informacoes varchar(50) not null,
+ cod_usuario integer not null, 
+CONSTRAINT fk_eventoUsuario FOREIGN KEY (cod_usuario) REFERENCES usuarios (codigo) );
