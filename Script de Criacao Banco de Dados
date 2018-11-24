@@ -52,7 +52,7 @@ create table configuracoesDataHora(
 	cod_usuario integer not null primary key,
     
     -- A: dd/mm/yyyy
-    -- B: mm/dd/yyyy
+    -- B: mm/dd/yyyy 
     -- C: yyyy/mm/dd
 	formatoData enum ('A', 'B', 'C') not null default 'A',
     
