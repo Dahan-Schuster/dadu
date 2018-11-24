@@ -23,5 +23,6 @@ Visamos sempre o aprendizado e a evolução.
 
 Obrigado pela atenção!
 
-Dahan Schuster, programador.
-contato: dan.plschuster@gmail.com
+Dahan Schuster, programador. Contato: dan.plschuster@gmail.com
+
+Ingrid Pauline, programadora. Contato: ingridpauline144@gmail.com
